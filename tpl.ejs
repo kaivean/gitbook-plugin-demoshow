@@ -1,0 +1,85 @@
+<% if (deps.length) { %>
+    <div class="demoshow-block-dep">
+        <% deps.forEach(function(dep){ %>
+            <% if (dep.type === 'css') { %>
+                <link href="<%= dep.data%>"></link>
+            <% } %>
+        <% }) %>
+        <% deps.forEach(function(dep){ %>
+            <% if (dep.type === 'js') { %>
+                <script src="<%= dep.data%>"></script>
+            <% } %>
+        <% }) %>
+    </div>
+<% } %>
+
+<% if (codes.length) { %>
+<div class="demoshow-block">
+    <div class="demoshow-block-show">
+        <div class="demoshow-block-show-header">
+
+        </div>
+        <div class="demoshow-block-show-content <%= namespace %>">
+            <style>
+                <% codes.forEach(function(code){ %>
+                    <% if (code.type === 'css') { %>
+                        <%- code.data%>
+                    <% } %>
+                <% }) %>
+            </style>
+            <div>
+                <% codes.forEach(function(code){ %>
+                    <% if (code.type === 'html') { %>
+                        <%- code.data%>
+                    <% } %>
+                <% }) %>
+            </div>
+            <script>
+                if (!window.onDomReady) {
+                    window.onDomReady = function (callback) {
+                        var readyRE = /complete|loaded|interactive/;
+                        if (readyRE.test(document.readyState) && document.body) {
+                            setTimeout(callback, 0);
+                        }
+                        else {
+                            document.addEventListener('DOMContentLoaded', callback);
+                        }
+                    }
+                }
+
+                <% codes.forEach(function(code){ %>
+                    <% if (code.type === 'javascript') { %>
+                        <%- code.data%>
+                    <% } %>
+                <% }) %>
+            </script>
+        </div>
+        <% if (!onlyrun) { %>
+        <div class="demoshow-block-show-control">
+            <i></i>
+            <span>显示代码</span>
+        </div>
+        <% } %>
+    </div>
+    <% if (!onlyrun) { %>
+    <div class="demoshow-block-code">
+        <% if (codes.length) { %>
+        <div class="demoshow-block-code-header">
+            <ul>
+                <% codes.forEach(function(code, index){ %>
+                    <li <% if (index == 0) { %>class='active'<% } %> ><%= code.type%></li>
+                <% }) %>
+            </ul>
+        </div>
+        <div class="demoshow-block-code-contents">
+            <% codes.forEach(function(code){ %>
+                <div class="demoshow-block-code-content" data-type="<%= code.type%>">
+                    <%- code.precode%>
+                </div>
+            <% }) %>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
+</div>
+<% } %>

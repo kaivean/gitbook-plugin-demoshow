@@ -1,0 +1,28 @@
+{
+  "name": "gitbook-plugin-demoshow",
+  "version": "1.0.0",
+  "description": "demoshow",
+  "main": "index.js",
+  "engines": {
+    "gitbook": ">2.x.x"
+  },
+  "gitbook": {
+    "properties": {
+      "myConfigKey": {
+        "type": "string",
+        "default": "it's the default value",
+        "description": "It defines my awesome config!"
+      }
+    }
+  },
+  "scripts": {},
+  "author": "kaivean",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.3",
+    "htmlencode": "0.0.4",
+    "jade": "^1.11.0",
+    "less": "^2.7.1",
+    "q": "*"
+  }
+}
