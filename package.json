@@ -1,18 +1,18 @@
 {
   "name": "gitbook-plugin-demoshow",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "demoshow",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaivean/gitbook-plugin-demoshow.git"
+  },
   "engines": {
     "gitbook": ">2.x.x"
   },
   "gitbook": {
     "properties": {
-      "myConfigKey": {
-        "type": "string",
-        "default": "it's the default value",
-        "description": "It defines my awesome config!"
-      }
+
     }
   },
   "scripts": {},

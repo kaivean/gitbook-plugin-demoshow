@@ -119,11 +119,12 @@ module.exports = {
     website: {
         assets: './assets',
         js: [
-            'http://cdn.bootcss.com/ace/1.2.3/ace.js',
+            'http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js',
+            'jquery.qrcode.min.js',
             'demoshow.js'
         ],
         css: [
-            // 'http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css',
+            'http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css',
             'demoshow.css'
         ]
     },
@@ -131,11 +132,11 @@ module.exports = {
     hooks: {
         'page:before': function(page) {
             _currentPage = page;
-            scripts['http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'] =
-                '<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>';
-
-            scripts['http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js'] =
-                '<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>';
+            // scripts['http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'] =
+            //     '<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>';
+            //
+            // scripts['http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js'] =
+            //     '<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>';
             return page;
         },
         'page': function(page) {
@@ -152,9 +153,7 @@ module.exports = {
                     str += scripts[url];
                 }
             }
-            // console.log(page.content);
-            page.content = str + page.content; // .replace('</head>', str + '</head>')
-            // console.log(page);
+            page.content = str + page.content;
             scripts = [];
             return page;
         }
@@ -164,7 +163,6 @@ module.exports = {
         demoshow: {
             process: function (block) {
                 var ctx = this;
-                // console.log('block', block);
                 if (this.output.name !== 'website') {
                     return '';
                 }

@@ -35,4 +35,51 @@ require(["gitbook"], function(gitbook) {
     }
 
     gitbook.events.bind("page.change", initDemoshow);
+
+
+    var opts = {};
+    gitbook.events.bind("page.change", function (a, b) {
+        var icon = $('.js-toolbar-action[aria-label=qrcode').filter('.pull-left');
+        $('#demoshow-qrcode').remove();
+        var ele = $('<div id="demoshow-qrcode" style="display:none"></div>');
+        ele.insertAfter(icon);
+        ele.css({
+            left: icon.position().left,
+            top: icon.height()
+        });
+        ele.qrcode({
+            render: "canvas", // table方式
+            width: 200, // 宽度
+            height: 200, // 高度
+            text: location.href // 任意内容
+        });
+
+        icon.hover(
+            function () {
+                ele.show();
+            },
+            function () {
+                ele.hide();
+            }
+        )
+    });
+
+    gitbook.events.bind('start', function(e, config) {
+        opts = config.demoshow || {};
+        opts = Object.assign({}, opts, {
+            qrcode: true
+        });
+
+        if (opts.qrcode) {
+            gitbook.toolbar.createButton({
+                icon: "fa fa-qrcode",
+                label: "qrcode",
+                position: 'left',
+                text: "二维码",
+                onClick: function(e) {
+                    e.preventDefault();
+                }
+            });
+        }
+    });
 });

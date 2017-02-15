@@ -100,3 +100,24 @@
 .demoshow-block-code-content:first-child {
     display: block;
 }
+
+@media (max-width: 1240px) {
+    .book-body .body-inner {
+         position: absolute !important;
+         /*min-height: calc(100% - 50px);*/
+    }
+}
+
+
+#demoshow-qrcode {
+    -webkit-box-shadow: -1px 2px 13px rgba(0, 0, 0, .5);
+    -moz-box-shadow: -1px 2px 13px rgba(0, 0, 0, .5);
+    box-shadow: -1px 2px 13px rgba(0, 0, 0, .5);
+    height: 220px;
+    width: 220px;
+    padding: 10px;
+    position: absolute;
+    top: 50px;
+    z-index: 101;
+    background: #fff;
+}
